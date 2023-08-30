@@ -1,11 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://vckxp7glvgdk"]
+[gd_scene load_steps=5 format=3 uid="uid://vckxp7glvgdk"]
 
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_3wia8"]
 [ext_resource type="PackedScene" uid="uid://b8338plkfvf4a" path="res://scenes/background.tscn" id="1_gq35q"]
 [ext_resource type="PackedScene" uid="uid://4yqg3qkt2luf" path="res://scenes/player.tscn" id="2_jswdu"]
 
+[sub_resource type="Curve2D" id="Curve2D_u32ap"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0, 0, 0, 0, 800, 600, 0, 0, 0, 0, 0, 600, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
 [node name="Level" type="Node2D"]
+script = ExtResource("1_3wia8")
 
 [node name="Background" parent="." instance=ExtResource("1_gq35q")]
 
 [node name="Player" parent="." instance=ExtResource("2_jswdu")]
 position = Vector2(392, 257)
+
+[node name="MeteorPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_u32ap")
+
+[node name="MeteorSpawnLocation" type="PathFollow2D" parent="MeteorPath"]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

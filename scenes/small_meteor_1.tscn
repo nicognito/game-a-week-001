@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2j7ye6tyuohv"]
+[gd_scene load_steps=4 format=3 uid="uid://c2j7ye6tyuohv"]
 
 [ext_resource type="Texture2D" uid="uid://btqn4o4nqh8ls" path="res://assets/textures/meteors/meteorGrey_small1.png" id="1_pxeio"]
+[ext_resource type="Script" path="res://scripts/meteor.gd" id="1_tv1cm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eq1sj"]
 radius = 11.0
 
-[node name="SmallMeteor1" type="Area2D"]
+[node name="SmallMeteor1" type="Area2D" groups=["meteors"]]
 collision_layer = 4
 collision_mask = 3
+script = ExtResource("1_tv1cm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_pxeio")
