@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://djfoifrosr8xs"]
+
+[ext_resource type="Texture2D" uid="uid://b68h75cqep2bg" path="res://assets/textures/meteors/meteorGrey_med2.png" id="1_8uiu4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3malu"]
+radius = 17.0294
+
+[node name="MedMeteor2" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8uiu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_3malu")

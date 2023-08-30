@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2j7ye6tyuohv"]
+
+[ext_resource type="Texture2D" uid="uid://btqn4o4nqh8ls" path="res://assets/textures/meteors/meteorGrey_small1.png" id="1_pxeio"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eq1sj"]
+radius = 11.0
+
+[node name="SmallMeteor1" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pxeio")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_eq1sj")
