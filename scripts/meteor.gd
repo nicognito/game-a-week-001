@@ -1,5 +1,6 @@
 extends Area2D
 
+@onready var sprite = $Sprite2D
 
 var buffer = 20
 var speed = 100
@@ -12,15 +13,19 @@ func _ready():
 func _process(delta):
 	global_position += delta * direction * speed
 
+	var buffer = sprite.get_rect().size
+	var buffer_width = buffer.x
+	var buffer_height = buffer.y
+
 	var screen_size = get_viewport_rect().size
-	if global_position.x < 0 - buffer:
-		global_position.x = screen_size.x - 1 + buffer
-	elif global_position.x > screen_size.x - 1 + buffer:
-		global_position.x = 0 - buffer
-	if global_position.y < 0 - buffer:
-		global_position.y = screen_size.y - 1 + buffer
-	elif global_position.y > screen_size.y - 1 + buffer:
-		global_position.y = 0 - buffer
+	if global_position.x < 0 - buffer_width / 2:
+		global_position.x = screen_size.x - 1 + buffer_width / 2
+	elif global_position.x > screen_size.x - 1 + buffer_width / 2:
+		global_position.x = 0 - buffer_width / 2
+	if global_position.y < 0 - buffer_height / 2:
+		global_position.y = screen_size.y - 1 + buffer_height / 2
+	elif global_position.y > screen_size.y - 1 + buffer_height / 2:
+		global_position.y = 0 - buffer_height / 2
 
 
 func initialize(new_position, player):

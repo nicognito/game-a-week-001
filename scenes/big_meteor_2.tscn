@@ -19,3 +19,5 @@ texture = ExtResource("1_o2djr")
 position = Vector2(-5, -4)
 rotation = -1.87427
 shape = SubResource("CapsuleShape2D_8l0uv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

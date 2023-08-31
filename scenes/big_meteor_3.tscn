@@ -17,3 +17,5 @@ texture = ExtResource("1_gb825")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_gleim")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
