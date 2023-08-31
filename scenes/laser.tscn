@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_ksv05"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ujaj6"]
-radius = 5.0
+radius = 7.0
 height = 18.0
 
 [node name="Laser" type="Area2D"]
