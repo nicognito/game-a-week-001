@@ -15,6 +15,8 @@ height = 44.0
 collision_mask = 4
 script = ExtResource("1_4yaxs")
 
+[node name="LaserContainer" type="Node" parent="."]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_7h6hq")
@@ -26,3 +28,6 @@ shape = SubResource("CapsuleShape2D_deqqt")
 position = Vector2(0, 6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aqj0a")
+
+[node name="LaserMarker" type="Marker2D" parent="."]
+position = Vector2(0, -13)

@@ -8,7 +8,12 @@ signal died
 @export var braking_factor = 100
 @export var max_speed = 200
 
+var laser_scene = preload("res://scenes/laser.tscn")
+
 var is_invincible = false
+
+@onready var laser_container = $LaserContainer
+@onready var laser_marker = $LaserMarker
 
 func _process(delta):
 	if is_invincible:
@@ -20,6 +25,8 @@ func _process(delta):
 		rotation_degrees -= turn_speed * delta
 	if Input.is_action_pressed("turn_right"):
 		rotation_degrees += turn_speed * delta
+	if Input.is_action_just_pressed("fire"):
+		fire_laser()
 
 
 func _physics_process(delta):
@@ -44,6 +51,13 @@ func _physics_process(delta):
 		global_position.y = screen_size.y
 	elif global_position.y > screen_size.y - 1:
 		global_position.y = 0
+
+
+func fire_laser():
+	var laser: Laser = laser_scene.instantiate()
+	laser.global_position = laser_marker.global_position
+	laser.rotation = rotation
+	laser_container.add_child(laser)
 
 
 func die():
