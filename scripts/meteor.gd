@@ -1,9 +1,12 @@
 extends Area2D
 
-var buffer = 20
 
+var buffer = 20
 var speed = 100
 var direction = Vector2.ZERO
+
+func _ready():
+	body_entered.connect(_on_body_entered)
 
 
 func _process(delta):
@@ -30,3 +33,8 @@ func initialize(new_position, player):
 
 	# random rotation
 	rotation = TAU * randf()
+
+
+func _on_body_entered(body):
+	if body is Player:
+		body.die()
