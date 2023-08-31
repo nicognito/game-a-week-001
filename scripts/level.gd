@@ -32,7 +32,6 @@ func spawn_player():
 	add_child(player)
 	player.global_position = screen_size / 2
 	player.died.connect(_on_player_died)
-	player.start_invincibility()
 
 
 func _on_timer_timeout():
@@ -61,6 +60,7 @@ func _on_player_died():
 	if life:
 		await get_tree().create_timer(1).timeout
 		spawn_player()
+		player.start_invincibility()
 	else:
 		print("Game Over")
 
