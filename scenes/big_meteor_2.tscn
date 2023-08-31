@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dp3gaen1cg3cm"]
 
+[ext_resource type="Script" path="res://scripts/big_meteor.gd" id="1_eojd1"]
 [ext_resource type="Texture2D" uid="uid://dotdrq54624fs" path="res://assets/textures/meteors/meteorGrey_big2.png" id="1_o2djr"]
-[ext_resource type="Script" path="res://scripts/meteor.gd" id="1_v12x8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8l0uv"]
 radius = 35.7335
@@ -10,7 +10,7 @@ height = 108.81
 [node name="BigMeteor2" type="Area2D" groups=["meteors"]]
 collision_layer = 4
 collision_mask = 3
-script = ExtResource("1_v12x8")
+script = ExtResource("1_eojd1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o2djr")
@@ -21,3 +21,5 @@ rotation = -1.87427
 shape = SubResource("CapsuleShape2D_8l0uv")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

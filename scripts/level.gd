@@ -9,15 +9,25 @@ var max_meteor_count = 10
 
 var life = 3
 
+var med_meteor_scenes = [
+	preload("res://scenes/med_meteor_1.tscn"),
+	preload("res://scenes/med_meteor_2.tscn"),
+]
+
+var small_meteor_scenes = [
+	preload("res://scenes/small_meteor_1.tscn"),
+	preload("res://scenes/small_meteor_2.tscn"),
+]
+
 var meteor_scenes: Array[PackedScene] = [
 	preload("res://scenes/big_meteor_1.tscn"),
 	preload("res://scenes/big_meteor_2.tscn"),
 	preload("res://scenes/big_meteor_3.tscn"),
 	preload("res://scenes/big_meteor_4.tscn"),
-	preload("res://scenes/med_meteor_1.tscn"),
-	preload("res://scenes/med_meteor_2.tscn"),
-	preload("res://scenes/small_meteor_1.tscn"),
-	preload("res://scenes/small_meteor_2.tscn"),
+	med_meteor_scenes[0],
+	med_meteor_scenes[1],
+	small_meteor_scenes[0],
+	small_meteor_scenes[1],
 ]
 
 

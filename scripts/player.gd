@@ -4,7 +4,7 @@ extends CharacterBody2D
 signal died
 
 @export var acceleration = 5
-@export var turn_speed = 250
+@export var turn_speed = 200
 @export var braking_factor = 100
 @export var max_speed = 200
 
@@ -44,11 +44,11 @@ func _physics_process(delta):
 
 	var screen_size = get_viewport_rect().size
 	if global_position.x < 0:
-		global_position.x = screen_size.x
+		global_position.x = screen_size.x - 1
 	elif global_position.x > screen_size.x - 1:
 		global_position.x = 0
 	if global_position.y < 0:
-		global_position.y = screen_size.y
+		global_position.y = screen_size.y - 1
 	elif global_position.y > screen_size.y - 1:
 		global_position.y = 0
 
