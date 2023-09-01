@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var meteor_spawn_location = $MeteorPath/MeteorSpawnLocation
+@onready var meteor_container = $MeteorContainer
 
 var player_scene = preload("res://scenes/player.tscn")
 var player: Player = null
@@ -52,7 +53,7 @@ func _on_timer_timeout():
 	# instantiate a random meteor
 	var i = randi() % meteor_scenes.size()
 	var meteor = meteor_scenes[i].instantiate()
-	add_child(meteor)
+	meteor_container.add_child(meteor)
 
 	# pick a random position along the meteor spawn path
 	meteor_spawn_location.progress_ratio = randf()

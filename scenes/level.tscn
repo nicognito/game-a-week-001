@@ -24,4 +24,6 @@ position = Vector2(-16, -16)
 wait_time = 2.0
 autostart = true
 
+[node name="MeteorContainer" type="Node" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
