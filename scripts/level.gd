@@ -47,23 +47,16 @@ func spawn_player():
 
 func _on_timer_timeout():
 	# avoid creating too many meteors, or creating meteors when the player is dead
-	if not player or get_tree().get_nodes_in_group("meteors").size() > max_meteor_count:
+	if not player or get_tree().get_nodes_in_group("meteors").size() >= max_meteor_count:
 		return
 
-	# instantiate a random meteor
-	var i = randi() % meteor_scenes.size()
-	var meteor = meteor_scenes[i].instantiate()
-	meteor_container.add_child(meteor)
-
-	# pick a random position along the meteor spawn path
+	# instantiate a random meteor along the meteor spawn path
 	meteor_spawn_location.progress_ratio = randf()
 	var meteor_position = meteor_spawn_location.global_position
-
-	meteor.initialize(meteor_position, player)
+	spawn_meteor(meteor_scenes, meteor_position, player.global_position)
 
 
 func _on_player_died():
-	print("remove")
 	player.queue_free()
 	player = null
 	life -= 1
@@ -75,3 +68,26 @@ func _on_player_died():
 	else:
 		print("Game Over")
 
+
+func _on_meteor_destroyed(meteor_position, meteor_size, meteor_direction):
+	if meteor_size == Meteor.MeteorSize.SMALL:
+		return
+
+	var scenes
+
+	if meteor_size == Meteor.MeteorSize.BIG:
+		scenes = med_meteor_scenes
+	elif meteor_size == Meteor.MeteorSize.MEDIUM:
+		scenes = small_meteor_scenes
+
+	# split meteor in 2 smaller one
+	for iteration in 2:
+		spawn_meteor(scenes, meteor_position, meteor_position + meteor_direction)
+
+
+func spawn_meteor(scenes, from, to):
+	var i = randi() % scenes.size()
+	var meteor = scenes[i].instantiate()
+	meteor_container.add_child(meteor)
+	meteor.destroyed.connect(_on_meteor_destroyed)
+	meteor.initialize(from, to)

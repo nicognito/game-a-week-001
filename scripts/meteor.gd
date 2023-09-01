@@ -1,6 +1,7 @@
 class_name Meteor
 extends Area2D
 
+signal destroyed(position, size, direction)
 
 enum MeteorSize {
 	SMALL,
@@ -38,12 +39,13 @@ func _process(delta):
 		global_position.y = 0 - buffer_height / 2
 
 
-func initialize(new_position, player):
+func initialize(new_position, towards_position):
+	rotation = 0
 	global_position = new_position
 
 	# move towards the player with jitter
-	var angle = get_angle_to(player.global_position)
-	var jitter = randf_range(-PI / 8, PI / 8)
+	var angle = get_angle_to(towards_position)
+	var jitter = randf_range(-PI / 4, PI / 4)
 	direction = Vector2.from_angle(angle + jitter).normalized()
 
 	# random rotation
@@ -53,10 +55,14 @@ func initialize(new_position, player):
 func _on_body_entered(body):
 	if body is Player:
 		body.die()
-		queue_free()
+		destroy()
 
 
 func _on_area_entered(area):
 	if area is Laser:
 		area.queue_free()
-		queue_free()
+		destroy()
+
+func destroy():
+	destroyed.emit(global_position, meteor_size, direction)
+	queue_free()
