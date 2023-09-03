@@ -72,7 +72,7 @@ func _on_player_died():
 	life -= 1
 
 	if life:
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(2).timeout
 		spawn_player()
 		player.start_invincibility()
 	else:
