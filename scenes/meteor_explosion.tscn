@@ -15,22 +15,24 @@ particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 color_ramp = SubResource("GradientTexture1D_wwnu5")
 
 [node name="MeteorExplosion" type="GPUParticles2D"]
-amount = 4
+emitting = false
+amount = 6
 process_material = SubResource("ParticleProcessMaterial_kh40f")
 texture = ExtResource("1_yves3")
-lifetime = 0.5
+lifetime = 0.8
 one_shot = true
+explosiveness = 1.0
 script = ExtResource("2_2n3mg")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.8
 one_shot = true
 autostart = true
 

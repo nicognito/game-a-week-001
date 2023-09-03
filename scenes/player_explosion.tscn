@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0doeguhpg0ct"]
+
+[ext_resource type="Script" path="res://scripts/player_explosion.gd" id="1_c5imr"]
+
+[sub_resource type="Gradient" id="Gradient_bkslb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xnpfw"]
+gradient = SubResource("Gradient_bkslb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k5v8x"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -200.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+radial_accel_max = 57.96
+scale_min = 2.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_xnpfw")
+
+[node name="PlayerExplosion" type="GPUParticles2D"]
+position = Vector2(360, 259)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_k5v8x")
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("1_c5imr")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
