@@ -10,6 +10,8 @@ var max_meteor_count = 10
 
 var life = 3
 
+var meteor_explosion_scenes = preload("res://scenes/meteor_explosion.tscn")
+
 var med_meteor_scenes = [
 	preload("res://scenes/med_meteor_1.tscn"),
 	preload("res://scenes/med_meteor_2.tscn"),
@@ -57,6 +59,8 @@ func _on_timer_timeout():
 
 
 func _on_player_died():
+	if not player:
+		return
 	player.queue_free()
 	player = null
 	life -= 1
@@ -70,6 +74,10 @@ func _on_player_died():
 
 
 func _on_meteor_destroyed(meteor_position, meteor_size, meteor_direction):
+	var meteor_explosion = meteor_explosion_scenes.instantiate()
+	meteor_container.add_child(meteor_explosion)
+	meteor_explosion.global_position = meteor_position
+
 	if meteor_size == Meteor.MeteorSize.SMALL:
 		return
 
