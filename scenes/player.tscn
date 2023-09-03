@@ -48,7 +48,6 @@ script = ExtResource("1_4yaxs")
 [node name="LaserContainer" type="Node" parent="."]
 
 [node name="FlameParticles2D" type="GPUParticles2D" parent="."]
-visible = false
 position = Vector2(0, 19)
 amount = 80
 process_material = SubResource("ParticleProcessMaterial_p0ske")

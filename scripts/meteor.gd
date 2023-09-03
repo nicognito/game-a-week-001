@@ -16,13 +16,17 @@ var meteor_size = null
 var buffer = 20
 var speed = 100
 var direction = Vector2.ZERO
+var rotating_speed = 0
 
 func _ready():
+	speed += randf_range(-40, 40)
 	body_entered.connect(_on_body_entered)
+	rotating_speed += randf_range(-10, 10)
 
 
 func _process(delta):
 	global_position += delta * direction * speed
+	rotation += deg_to_rad(rotating_speed) * delta
 
 	var buffer = sprite.get_rect().size
 	var buffer_width = buffer.x
