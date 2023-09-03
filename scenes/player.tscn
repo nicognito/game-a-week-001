@@ -1,7 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://4yqg3qkt2luf"]
+[gd_scene load_steps=10 format=3 uid="uid://4yqg3qkt2luf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4yaxs"]
 [ext_resource type="Texture2D" uid="uid://cemr0dqjxdwyd" path="res://assets/textures/player/playerShip1_blue.png" id="1_7h6hq"]
+
+[sub_resource type="Gradient" id="Gradient_jibyr"]
+offsets = PackedFloat32Array(0, 0.625109, 1)
+colors = PackedColorArray(1, 1, 0, 0, 1, 0.341176, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s40xl"]
+gradient = SubResource("Gradient_jibyr")
+
+[sub_resource type="Curve" id="Curve_82ngh"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ii3t"]
+curve = SubResource("Curve_82ngh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p0ske"]
+lifetime_randomness = 0.3
+emission_shape = 3
+emission_box_extents = Vector3(4, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_7ii3t")
+color_ramp = SubResource("GradientTexture1D_s40xl")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_deqqt"]
 radius = 5.0
@@ -16,6 +46,12 @@ collision_mask = 4
 script = ExtResource("1_4yaxs")
 
 [node name="LaserContainer" type="Node" parent="."]
+
+[node name="FlameParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 19)
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_p0ske")
+lifetime = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
