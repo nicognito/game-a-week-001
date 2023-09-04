@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://vckxp7glvgdk"]
+[gd_scene load_steps=9 format=3 uid="uid://vckxp7glvgdk"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_3wia8"]
 [ext_resource type="PackedScene" uid="uid://b8338plkfvf4a" path="res://scenes/background.tscn" id="1_gq35q"]
 [ext_resource type="Texture2D" uid="uid://d33e8k8aohbob" path="res://assets/textures/background/shield1.png" id="3_5b4mc"]
 [ext_resource type="FontFile" uid="uid://dqu47qhe3gjsx" path="res://assets/font/kenvector_future_thin.ttf" id="4_v0x4k"]
+[ext_resource type="Texture2D" uid="uid://cemr0dqjxdwyd" path="res://assets/textures/player/playerShip1_blue.png" id="5_wu5h2"]
 
 [sub_resource type="Curve2D" id="Curve2D_u32ap"]
 _data = {
@@ -16,6 +17,10 @@ font = ExtResource("4_v0x4k")
 font_size = 32
 outline_size = 2
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5e1jf"]
+font = ExtResource("4_v0x4k")
+font_size = 26
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3wia8")
@@ -48,5 +53,20 @@ offset_right = 245.0
 offset_bottom = 59.0
 text = "SCORE: 9999"
 label_settings = SubResource("LabelSettings_sly4s")
+
+[node name="LifeLabel" type="Label" parent="HUD"]
+modulate = Color(1, 1, 1, 0.501961)
+offset_left = 70.0
+offset_top = 68.0
+offset_right = 117.0
+offset_bottom = 103.0
+text = "x 3"
+label_settings = SubResource("LabelSettings_5e1jf")
+
+[node name="PlayerShip1Blue" type="Sprite2D" parent="HUD"]
+modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(39, 81)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_wu5h2")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

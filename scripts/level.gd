@@ -3,6 +3,7 @@ extends Node2D
 @onready var meteor_spawn_location = $MeteorPath/MeteorSpawnLocation
 @onready var meteor_container = $MeteorContainer
 @onready var score_label = $HUD/ScoreLabel
+@onready var life_label = $HUD/LifeLabel
 
 var player_scene = preload("res://scenes/player.tscn")
 var player: Player = null
@@ -39,7 +40,9 @@ var meteor_scenes: Array[PackedScene] = [
 
 func _ready():
 	score = 0
+	life = 3
 	score_label.text = "SCORE: " + str(score)
+	life_label.text = "X " + str(life)
 	spawn_player()
 
 
@@ -74,6 +77,7 @@ func _on_player_died():
 	player.queue_free()
 	player = null
 	life -= 1
+	life_label.text = "X " + str(life)
 
 	if life:
 		await get_tree().create_timer(2).timeout
