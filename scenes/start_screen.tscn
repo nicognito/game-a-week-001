@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://di6xs1cqc4jfu"]
+[gd_scene load_steps=7 format=3 uid="uid://di6xs1cqc4jfu"]
 
 [ext_resource type="Texture2D" uid="uid://vxdykd588lk4" path="res://assets/textures/background/darkPurple.png" id="1_sr3oy"]
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_xphex"]
 [ext_resource type="FontFile" uid="uid://dqu47qhe3gjsx" path="res://assets/font/kenvector_future_thin.ttf" id="2_80ybx"]
+[ext_resource type="Texture2D" uid="uid://d33e8k8aohbob" path="res://assets/textures/background/shield1.png" id="3_4sdyy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_16t05"]
 font = ExtResource("2_80ybx")
@@ -33,7 +34,11 @@ offset_bottom = 600.0
 texture = ExtResource("1_sr3oy")
 stretch_mode = 1
 
-[node name="Label" type="Label" parent="."]
+[node name="Planet" type="Sprite2D" parent="."]
+position = Vector2(645, 144)
+texture = ExtResource("3_4sdyy")
+
+[node name="TitleLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

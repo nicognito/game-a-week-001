@@ -16,6 +16,8 @@ var life = 3
 var meteor_explosion_scene = preload("res://scenes/meteor_explosion.tscn")
 var player_explosion_scene = preload("res://scenes/player_explosion.tscn")
 
+var game_over_scene = preload("res://scenes/game_over.tscn")
+
 var med_meteor_scenes = [
 	preload("res://scenes/med_meteor_1.tscn"),
 	preload("res://scenes/med_meteor_2.tscn"),
@@ -84,7 +86,11 @@ func _on_player_died():
 		spawn_player()
 		player.start_invincibility()
 	else:
-		print("Game Over")
+		await get_tree().create_timer(2).timeout
+		var game_over_screen = game_over_scene.instantiate()
+		game_over_screen.set_score(score)
+		add_child(game_over_screen)
+
 
 
 func _on_meteor_destroyed(meteor_position, meteor_size, meteor_direction):
