@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://coxnklt74v58n"
+path="res://.godot/imported/aMAZEing Hamster_Breakbeat_version~1.mp3-67f1a67d10fe6e1a04af34a3312fdf0e.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/aMAZEing Hamster_Breakbeat_version~1.mp3"
+dest_files=["res://.godot/imported/aMAZEing Hamster_Breakbeat_version~1.mp3-67f1a67d10fe6e1a04af34a3312fdf0e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

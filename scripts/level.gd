@@ -90,6 +90,7 @@ func _on_player_died():
 		var game_over_screen = game_over_scene.instantiate()
 		game_over_screen.set_score(score)
 		add_child(game_over_screen)
+		AudioPlayer.play_sound("lost")
 
 
 

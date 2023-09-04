@@ -58,10 +58,11 @@ func fire_laser():
 	laser.global_position = laser_marker.global_position
 	laser.rotation = rotation
 	laser_container.add_child(laser)
+	AudioPlayer.play_sound("laser")
 
 
 func die():
-	print("died")
+	AudioPlayer.play_sound("die")
 	died.emit()
 
 

@@ -68,5 +68,6 @@ func _on_area_entered(area):
 		destroy()
 
 func destroy():
+	AudioPlayer.play_sound("boom")
 	destroyed.emit(global_position, meteor_size, direction)
 	queue_free()
