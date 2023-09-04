@@ -2,12 +2,14 @@ extends Node2D
 
 @onready var meteor_spawn_location = $MeteorPath/MeteorSpawnLocation
 @onready var meteor_container = $MeteorContainer
+@onready var score_label = $HUD/ScoreLabel
 
 var player_scene = preload("res://scenes/player.tscn")
 var player: Player = null
 
 var max_meteor_count = 10
 
+var score = 0
 var life = 3
 
 var meteor_explosion_scene = preload("res://scenes/meteor_explosion.tscn")
@@ -36,6 +38,8 @@ var meteor_scenes: Array[PackedScene] = [
 
 
 func _ready():
+	score = 0
+	score_label.text = "SCORE: " + str(score)
 	spawn_player()
 
 
@@ -86,19 +90,22 @@ func _on_meteor_destroyed(meteor_position, meteor_size, meteor_direction):
 	meteor_explosion.global_position = meteor_position
 
 	if meteor_size == Meteor.MeteorSize.SMALL:
-		return
+		score += 10
+	else:
+		var scenes
 
-	var scenes
+		if meteor_size == Meteor.MeteorSize.BIG:
+			score += 50
+			scenes = med_meteor_scenes
+		elif meteor_size == Meteor.MeteorSize.MEDIUM:
+			score += 20
+			scenes = small_meteor_scenes
 
-	if meteor_size == Meteor.MeteorSize.BIG:
-		scenes = med_meteor_scenes
-	elif meteor_size == Meteor.MeteorSize.MEDIUM:
-		scenes = small_meteor_scenes
+		# split meteor in 2 smaller one
+		for iteration in 2:
+			spawn_meteor(scenes, meteor_position, meteor_position + meteor_direction)
 
-	# split meteor in 2 smaller one
-	for iteration in 2:
-		spawn_meteor(scenes, meteor_position, meteor_position + meteor_direction)
-
+	score_label.text = "SCORE: " + str(score)
 
 func spawn_meteor(scenes, from, to):
 	var i = randi() % scenes.size()

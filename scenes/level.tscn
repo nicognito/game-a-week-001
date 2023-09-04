@@ -1,14 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://vckxp7glvgdk"]
+[gd_scene load_steps=7 format=3 uid="uid://vckxp7glvgdk"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_3wia8"]
 [ext_resource type="PackedScene" uid="uid://b8338plkfvf4a" path="res://scenes/background.tscn" id="1_gq35q"]
 [ext_resource type="Texture2D" uid="uid://d33e8k8aohbob" path="res://assets/textures/background/shield1.png" id="3_5b4mc"]
+[ext_resource type="FontFile" uid="uid://dqu47qhe3gjsx" path="res://assets/font/kenvector_future_thin.ttf" id="4_v0x4k"]
 
 [sub_resource type="Curve2D" id="Curve2D_u32ap"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -16, -16, 0, 0, 0, 0, 816, -16, 0, 0, 0, 0, 816, 616, 0, 0, 0, 0, -16, 616, 0, 0, 0, 0, -16, -16)
 }
 point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_sly4s"]
+font = ExtResource("4_v0x4k")
+font_size = 32
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_3wia8")
@@ -30,5 +37,16 @@ wait_time = 2.0
 autostart = true
 
 [node name="MeteorContainer" type="Node" parent="."]
+
+[node name="HUD" type="Node" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+modulate = Color(1, 1, 1, 0.501961)
+offset_left = 19.0
+offset_top = 20.0
+offset_right = 245.0
+offset_bottom = 59.0
+text = "SCORE: 9999"
+label_settings = SubResource("LabelSettings_sly4s")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
