@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://du0wsa375jmsa"]
+[gd_scene load_steps=2 format=3 uid="uid://du0wsa375jmsa"]
 
 [ext_resource type="Script" path="res://scripts/audio_player.gd" id="1_0sm4h"]
-[ext_resource type="AudioStream" uid="uid://coxnklt74v58n" path="res://assets/sounds/aMAZEing Hamster_Breakbeat_version~1.mp3" id="2_ev7lw"]
 
 [node name="AudioPlayer" type="Node"]
 script = ExtResource("1_0sm4h")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_ev7lw")
 autoplay = true
