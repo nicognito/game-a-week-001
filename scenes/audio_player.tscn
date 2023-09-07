@@ -4,6 +4,3 @@
 
 [node name="AudioPlayer" type="Node"]
 script = ExtResource("1_0sm4h")
-
-[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
-autoplay = true
